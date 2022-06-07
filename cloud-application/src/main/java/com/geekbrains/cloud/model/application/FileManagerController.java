@@ -65,6 +65,7 @@ public class FileManagerController implements Initializable {
             Thread readThread = new Thread(this::readLoop);
             readThread.setDaemon(true);
             readThread.start();
+
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
