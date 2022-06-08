@@ -27,7 +27,8 @@ public class CloudFileHandler extends SimpleChannelInboundHandler<CloudMessage> 
     protected void channelRead0(ChannelHandlerContext ctx, CloudMessage cloudMessage) throws Exception {
         if (cloudMessage instanceof FileRequest fileRequest) {
             ctx.writeAndFlush(new FileModel(currentDir.resolve(fileRequest.getName())));
-        } else if (cloudMessage instanceof FileModel fileModel) {
+        }
+        if (cloudMessage instanceof FileModel fileModel) {
             Files.write(currentDir.resolve(fileModel.getName()), fileModel.getData());
             ctx.writeAndFlush(new FileRepository(currentDir));
         }

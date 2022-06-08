@@ -8,19 +8,21 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.input.MouseEvent;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
 public class FileManagerController implements Initializable {
-
 
     private String homeDir;
 
@@ -75,6 +77,12 @@ public class FileManagerController implements Initializable {
         String[] list = new File(dir).list();
         assert list != null;
         return Arrays.asList(list);
+    }
+    public void handle(MouseEvent mouseEvent) {
+        if (mouseEvent.getClickCount() == 2) {
+            Path path = Paths.get(clientView.getItems().toString()).resolve(clientView.getSelectionModel().getSelectedItem());
+            clientView.getItems().addAll(String.valueOf(path));
+        }
     }
 
     public void upload(ActionEvent actionEvent) throws IOException {
