@@ -7,4 +7,5 @@ import lombok.Data;
 @AllArgsConstructor
 public class FileRequest implements CloudMessage {
     private String name;
+    private boolean isClicked;
 }
