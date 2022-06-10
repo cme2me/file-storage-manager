@@ -5,7 +5,6 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class FileRequest implements CloudMessage {
-    private String name;
-    private boolean isClicked;
+public class PathUpRequest {
+    private final String jumpOut;
 }
